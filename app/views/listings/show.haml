@@ -155,6 +155,16 @@
                   .content
                     = t(".contact")
 
+    .row-with-divider
+      .col-12
+        = form_for @watchlist do |f|
+          .col-6
+            = f.submit class: 'watch-submit'
+          .col-6
+            = f.collection_select(:id, @current_user.watchlists, :id, :name)
+            
+        = link_to "Add To Watchlist", new_watchlist_path, :class => "new-listing-link"
+
     - if received_testimonials.size > 0
       .row-with-divider.listing-author-activity
         .col-12

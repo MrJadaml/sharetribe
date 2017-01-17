@@ -1,0 +1,6 @@
+%h1 Watchlists
+
+- @watchlists.each do |watchlist|
+  = link_to watchlist_path(watchlist.id) do
+    .card
+      = watchlist.name

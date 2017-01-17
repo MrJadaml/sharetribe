@@ -88,6 +88,7 @@ class Person < ActiveRecord::Base
 
   has_many :listings, -> { where(deleted: 0) }, :dependent => :destroy, :foreign_key => "author_id"
   has_many :emails, :dependent => :destroy, :inverse_of => :person
+  has_many :watchlists
 
   has_one :location, -> { where(location_type: :person) }, :dependent => :destroy
 

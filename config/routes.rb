@@ -108,7 +108,7 @@ Kassi::Application.routes.draw do
   get '/community_not_found' => 'errors#community_not_found', as: :community_not_found
 
   resources :communities, only: [:new, :create]
-
+  resources :watchlists
 
   devise_for :people, only: :omniauth_callbacks, controllers: { omniauth_callbacks: "sessions" }
 

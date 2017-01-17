@@ -1,0 +1,9 @@
+%h1
+  = @watchlist.name
+
+- @listings.each do |listing|
+  = link_to listing_path(listing.id) do
+    .card
+      = listing.title
+  .del
+    X
