@@ -595,6 +595,24 @@ CREATE TABLE `emails` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `favorites`
+--
+
+DROP TABLE IF EXISTS `favorites`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `favorites` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `watchlist_id` int(11) DEFAULT NULL,
+  `listing_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index_favorites_on_watchlist_id_and_listing_id` (`watchlist_id`,`listing_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `feature_flags`
 --
 
@@ -1599,10 +1617,10 @@ DROP TABLE IF EXISTS `watchlists`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `watchlists` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `person_id` int(11) DEFAULT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
+  `person_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1616,7 +1634,7 @@ CREATE TABLE `watchlists` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-01-26 22:39:20
+-- Dump completed on 2017-01-29 10:13:20
 INSERT INTO schema_migrations (version) VALUES ('20080806070738');
 
 INSERT INTO schema_migrations (version) VALUES ('20080807071903');
@@ -3238,4 +3256,12 @@ INSERT INTO schema_migrations (version) VALUES ('20161107141257');
 INSERT INTO schema_migrations (version) VALUES ('20161109094513');
 
 INSERT INTO schema_migrations (version) VALUES ('20170127062120');
+
+INSERT INTO schema_migrations (version) VALUES ('20170128030619');
+
+INSERT INTO schema_migrations (version) VALUES ('20170128031347');
+
+INSERT INTO schema_migrations (version) VALUES ('20170128174229');
+
+INSERT INTO schema_migrations (version) VALUES ('20170129180057');
 

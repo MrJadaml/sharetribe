@@ -61,4 +61,14 @@ window.ST = window.ST || {};
     updateShippingPrice();
   };
 
+  module.watchlist = () => {
+    $('.watchlist-select').change(() => {
+      if ( $('.watchlist-select option:selected').text().trim() === 'New Watchlist' ) {
+        $('.watchlist-name-field').show();
+      } else {
+        $('.watchlist-name-field').hide();
+      }
+    });
+  }
+
 })(window.ST);

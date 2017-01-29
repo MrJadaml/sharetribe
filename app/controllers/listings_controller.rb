@@ -167,7 +167,7 @@ class ListingsController < ApplicationController
   end
 
   def show
-    @watchlist = Watchlist.new
+    @watchlist = current_user.watchlists.build
     @selected_tribe_navi_tab = "home"
 
     @current_image = if params[:image]

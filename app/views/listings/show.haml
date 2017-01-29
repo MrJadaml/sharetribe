@@ -9,6 +9,10 @@
   - needs_maps = !FeatureFlagHelper.feature_enabled?(:topbar_v1) || search_mode == :keyword
   = javascript_include_tag "https://maps.googleapis.com/maps/api/js#{key_param}" if needs_maps
 
+- content_for :extra_javascript do
+  :javascript
+    window.ST.watchlist();
+
 - content_for :title, raw(@listing.title)
 - content_for :meta_author, @listing.author.name(@current_community)
 - content_for :meta_description, StringUtils.first_words(@listing.description, 15)
@@ -158,12 +162,17 @@
     .row-with-divider
       .col-12
         = form_for @watchlist do |f|
+          .col-12.watchlist-name-field
+            = f.label :name
+            = f.text_field :name
           .col-6
-            = f.submit class: 'watch-submit'
-          .col-6
-            = f.collection_select(:id, @current_user.watchlists, :id, :name)
+            = f.submit class: 'new-listing-link watch-submit'
+          - if @current_user.watchlists.size > 0
+            = f.fields_for :favorites do |favorite|
+              = favorite.hidden_field :listing_id, value: @listing.id
+              .col-6
+                = favorite.collection_select(:watchlist_id, @current_user.watchlists, :id, :name, { include_blank: 'New Watchlist' }, { class: 'watchlist-select' })
             
-        = link_to "Add To Watchlist", new_watchlist_path, :class => "new-listing-link"
 
     - if received_testimonials.size > 0
       .row-with-divider.listing-author-activity
