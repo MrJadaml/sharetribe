@@ -1,4 +1,5 @@
 window.ST = window.ST || {};
+
 (function(module) {
   module.listing = function() {
     $('#add-to-updates-email').on('click', function() {

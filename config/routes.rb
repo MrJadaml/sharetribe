@@ -109,7 +109,6 @@ Kassi::Application.routes.draw do
 
   resources :communities, only: [:new, :create]
   resources :watchlists
-  resources :favorites
 
   devise_for :people, only: :omniauth_callbacks, controllers: { omniauth_callbacks: "sessions" }
 
